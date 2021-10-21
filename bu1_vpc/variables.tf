@@ -17,3 +17,5 @@ variable "EC2_USER" {}
 variable "pub_key" {}
 
 #variable "PRIVATE_KEY_PATH" {}
+
+# variable "private_key" {}

@@ -5,6 +5,7 @@ resource "aws_vpc" "bu1" {
   instance_tenancy = "default"
   enable_dns_hostnames = true
   enable_dns_support = true
+  name = "netta-bu1"
 
   tags = {
     Name = "tgw-spoke-bu1"
