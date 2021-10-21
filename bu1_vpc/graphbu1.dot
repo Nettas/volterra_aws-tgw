@@ -1,0 +1,44 @@
+digraph {
+	compound = "true"
+	newrank = "true"
+	subgraph "root" {
+		"[root] aws_instance.bu1-web (expand)" [label = "aws_instance.bu1-web", shape = "box"]
+		"[root] aws_internet_gateway.bu1-igw (expand)" [label = "aws_internet_gateway.bu1-igw", shape = "box"]
+		"[root] aws_key_pair.aws-tgw-key-pair (expand)" [label = "aws_key_pair.aws-tgw-key-pair", shape = "box"]
+		"[root] aws_route_table.prod-public-crt (expand)" [label = "aws_route_table.prod-public-crt", shape = "box"]
+		"[root] aws_route_table_association.prod-crta-public-sub (expand)" [label = "aws_route_table_association.prod-crta-public-sub", shape = "box"]
+		"[root] aws_security_group.ssh_allowed (expand)" [label = "aws_security_group.ssh_allowed", shape = "box"]
+		"[root] aws_subnet.private-vpc-bu1 (expand)" [label = "aws_subnet.private-vpc-bu1", shape = "box"]
+		"[root] aws_subnet.public-vpc-bu1 (expand)" [label = "aws_subnet.public-vpc-bu1", shape = "box"]
+		"[root] aws_vpc.bu1 (expand)" [label = "aws_vpc.bu1", shape = "box"]
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" [label = "provider[\"registry.terraform.io/hashicorp/aws\"]", shape = "diamond"]
+		"[root] var.EC2_USER" [label = "var.EC2_USER", shape = "note"]
+		"[root] var.ami" [label = "var.ami", shape = "note"]
+		"[root] var.awsRegion" [label = "var.awsRegion", shape = "note"]
+		"[root] var.pub_key" [label = "var.pub_key", shape = "note"]
+		"[root] aws_instance.bu1-web (expand)" -> "[root] aws_key_pair.aws-tgw-key-pair (expand)"
+		"[root] aws_instance.bu1-web (expand)" -> "[root] aws_security_group.ssh_allowed (expand)"
+		"[root] aws_instance.bu1-web (expand)" -> "[root] var.EC2_USER"
+		"[root] aws_instance.bu1-web (expand)" -> "[root] var.ami"
+		"[root] aws_internet_gateway.bu1-igw (expand)" -> "[root] aws_vpc.bu1 (expand)"
+		"[root] aws_key_pair.aws-tgw-key-pair (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] aws_key_pair.aws-tgw-key-pair (expand)" -> "[root] var.pub_key"
+		"[root] aws_route_table.prod-public-crt (expand)" -> "[root] aws_internet_gateway.bu1-igw (expand)"
+		"[root] aws_route_table_association.prod-crta-public-sub (expand)" -> "[root] aws_route_table.prod-public-crt (expand)"
+		"[root] aws_route_table_association.prod-crta-public-sub (expand)" -> "[root] aws_subnet.private-vpc-bu1 (expand)"
+		"[root] aws_security_group.ssh_allowed (expand)" -> "[root] aws_vpc.bu1 (expand)"
+		"[root] aws_subnet.private-vpc-bu1 (expand)" -> "[root] aws_vpc.bu1 (expand)"
+		"[root] aws_subnet.public-vpc-bu1 (expand)" -> "[root] aws_vpc.bu1 (expand)"
+		"[root] aws_vpc.bu1 (expand)" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"]"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_instance.bu1-web (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_route_table_association.prod-crta-public-sub (expand)"
+		"[root] meta.count-boundary (EachMode fixup)" -> "[root] aws_subnet.public-vpc-bu1 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_instance.bu1-web (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_route_table_association.prod-crta-public-sub (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)" -> "[root] aws_subnet.public-vpc-bu1 (expand)"
+		"[root] provider[\"registry.terraform.io/hashicorp/aws\"]" -> "[root] var.awsRegion"
+		"[root] root" -> "[root] meta.count-boundary (EachMode fixup)"
+		"[root] root" -> "[root] provider[\"registry.terraform.io/hashicorp/aws\"] (close)"
+	}
+}
+
