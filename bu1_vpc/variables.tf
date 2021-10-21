@@ -14,3 +14,4 @@ variable "ami" {
 }
 
 variable "EC2_USER" {}
+variable "pub_key" {}
